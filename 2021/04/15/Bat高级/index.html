@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Bat高级BAT脚本编写教程入门提高篇批处理文件的参数 批处理文件还可以像C语言的函数一样使用参数（相当于DOS命令的命令行参数），这需要用到一个参数表示符“%”。 %[1-9]表示参数，参数是指在运行批处理文件时在文件名后加的以空格（或者Tab）分隔的字符串。变量可以从%0到%9，%0表示批处理命令本身，其它参数字符串用%1到%9顺序表示。 例子： ShowTwoFilesContent.bat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Bat高级BAT脚本编写教程入门提高篇批处理文件的参数 批处理文件还可以像C语言的函数一样使用参数（相当于DOS命令的命令行参数），这需要用到一个参数表示符“%”。 %[1-9]表示参数，参数是指在运行批处理文件时在文件名后加的以空格（或者Tab）分隔的字符串。变量可以从%0到%9，%0表示批处理命令本身，其它参数字符串用%1到%9顺序表示。 例子： ShowTwoFilesContent.bat">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-15T05:00:21.576Z">
+<meta property="article:modified_time" content="2021-04-08T07:12:52.533Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/04/15/css%E6%96%B0%E6%8B%9F%E6%80%81/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bat%E9%AB%98%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Bat高级</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-15T05:00:21.576Z" itemprop="datePublished">2021-04-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Bat高级"><a href="#Bat高级" class="headerlink" title="Bat高级"></a>Bat高级</h2><p>BAT脚本编写教程入门提高篇<br>批处理文件的参数</p>
+<p>批处理文件还可以像C语言的函数一样使用参数（相当于DOS命令的命令行参数），这需要用到一个参数表示符“%”。</p>
+<p>%[1-9]表示参数，参数是指在运行批处理文件时在文件名后加的以空格（或者Tab）分隔的字符串。变量可以从%0到%9，%0表示批处理命令本身，其它参数字符串用%1到%9顺序表示。</p>
+<p>例子：</p>
+<p>ShowTwoFilesContent.bat</p>
+<p><span style="font-size:18px;">@ECHO OFF<br>TITLE BAT参数<br>COLOR A<br>echo ———–读取文件内容———–<br>echo=<br>TYPE %1<br>echo=<br>TYPE %2<br>echo=<br>echo ———————————–<br>PAUSE</span><br>在另一个BAT文件中调用</p>
+<p><span style="font-size:18px;">@ECHO OFF<br>TITLE BAT参数<br>COLOR A<br>echo ———–BAT参数———–<br>echo=<br>CALL ShowTwoFilesContent.bat 1.txt 2.txt<br>echo=<br>echo ———————————–<br>PAUSE<br></span></p>
+<p>if goto choice for 命令<br>1、if [not] “参数” == “字符串” 待执行的命令</p>
+<p>参数如果等于(not表示不等，下同)指定的字符串，则条件成立，运行命令，否则运行下一句。</p>
+<p>例：if “%1”==”a” format a:</p>
+<p>2、if [not] exist [路径]文件名 待执行的命令<br>如果有指定的文件，则条件成立，运行命令，否则运行下一句。</p>
+<p>如: if exist c:\config.sys type c:\config.sys<br>表示如果存在c:\config.sys文件，则显示它的内容。</p>
+<p>3、if errorlevel &lt;数字&gt; 待执行的命令</p>
+<p>很多DOS程序在运行结束后会返回一个数字值用来表示程序运行的结果(或者状态)，通过if errorlevel命令可以判断程序的返回值，根据不同的返回值来决定执行不同的命令(返回值必须按照从大到小的顺序排列)。如果返回值等于指定的数字，则条件成立，运行命令，否则运行下一句。</p>
+<p>如if errorlevel 2 goto x2</p>
+<p>例子：<br>test.bat<br><span style="font-size:18px;">@ECHO OFF<br>TITLE BAT参数<br>COLOR A<br>echo ———–if goto choice for 命令———–<br>echo=<br>if “%1”==”1” goto x1</p>
+<p>:x1<br>echo 参数1正确…<br>echo=<br>echo ———————————–<br>exit /b 0</span><br>在另一个bat文件中调用<br><span style="font-size:18px;">@ECHO OFF<br>TITLE BAT参数<br>COLOR A<br>echo ———–BAT参数———–<br>echo=<br>CALL test.bat 1<br>if %errorlevel%==0 goto x2</p>
+<p>:x2<br>echo 程序跳到x2…</p>
+<p>echo=<br>echo ———————————–<br>PAUSE<br></span><br>choice 使用此命令可以让用户输入一个字符（用于选择），从而根据用户的选择返回不同的errorlevel，然后于if errorlevel配合，根据用户的选择运行不同的命令。</p>
+<p>注意：choice命令为DOS或者Windows系统提供的外部命令，不同版本的choice命令语法会稍有不同，请用choice /?查看用法。</p>
+<p>choice的命令语法（该语法为Windows 2003中choice命令的语法，其它版本的choice的命令语法与此大同小异）：</p>
+<p>CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]</p>
+<p>   注意:<br>   ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选<br>   择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，<br>   该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的<br>   ERRORLEVEL 值。如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0<br>   的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降<br>   序排列。</p>
+<p>示例:<br>   CHOICE /?<br>   CHOICE /C YNC /M “确认请按 Y，否请按 N，或者取消请按 C。”<br>   CHOICE /T 10 /C ync /CS /D y<br>   CHOICE /C ab /M “选项 1 请选择 a，选项 2 请选择 b。”<br>   CHOICE /C ab /N /M “选项 1 请选择 a，选项 2 请选择 b。”</p>
+<p>如果我运行命令：CHOICE /C YNC /M “确认请按 Y，否请按 N，或者取消请按 C。”<br>屏幕上会显示：<br>确认请按 Y，否请按 N，或者取消请按 C。 [Y,N,C]?</p>
+<p>例子：<br><span style="font-size:18px;">@ECHO OFF<br>TITLE <span style="font-family:Arial, Helvetica, sans-serif;">CHOICE</span><br>COLOR A<br>echo ———–CHOICE———–<br>echo=<br>CHOICE /C ab /M “选项 1 请选择 a，选项 2 请选择 b。”<br>if %errorlevel%==2 goto B<br>if %errorlevel%==1 goto A</p>
+<p>:A<br>echo 程序跳到A…<br>goto end<br>:B<br>echo 程序跳到B…<br>goto end</p>
+<p>:end<br>echo=<br>echo ———————————–<br>PAUSE</span></p>
+<p>批处理示例</p>
+<ol>
+<li>IF-EXIST</li>
+</ol>
+<p>1)</p>
+<p>首先用记事本在C:\建立一个test1.bat批处理文件，文件内容如下：<br>@echo off<br>IF EXIST \AUTOEXEC.BAT TYPE \AUTOEXEC.BAT<br>IF NOT EXIST \AUTOEXEC.BAT ECHO \AUTOEXEC.BAT does not exist</p>
+<p>然后运行它：<br>C:&gt;TEST1.BAT</p>
+<p>如果C:\存在AUTOEXEC.BAT文件，那么它的内容就会被显示出来，如果不存在，批处理就会提示你该文件不存在。</p>
+<p>2)</p>
+<p>接着再建立一个test2.bat文件，内容如下：<br>@ECHO OFF<br>IF EXIST %1 TYPE %1<br>IF NOT EXIST %1 ECHO %1 does not exist</p>
+<p>执行:<br>C:&gt;TEST2 AUTOEXEC.BAT<br>该命令运行结果同上。</p>
+<p>说明：<br>(1) IF EXIST 是用来测试文件是否存在的，格式为<br>IF EXIST [路径+文件名] 命令<br>(2) test2.bat文件中的%1是参数，DOS允许传递9个批参数信息给批处理文件，分别为%1~%9(%0表示test2命令本身) ，这有点象编程中的实参和形参的关系，%1是形参，AUTOEXEC.BAT是实参。</p>
+<ol start="3">
+<li>更进一步的，建立一个名为TEST3.BAT的文件，内容如下：<br>@echo off<br>IF “%1” == “A” ECHO XIAO<br>IF “%2” == “B” ECHO TIAN<br>IF “%3” == “C” ECHO XIN</li>
+</ol>
+<p>如果运行：<br>C:&gt;TEST3 A B C<br>屏幕上会显示:<br>XIAO<br>TIAN<br>XIN</p>
+<p>如果运行：<br>C:&gt;TEST3 A B<br>屏幕上会显示<br>XIAO<br>TIAN</p>
+<p>在这个命令执行过程中，DOS会将一个空字符串指定给参数%3。</p>
+<p>2、IF-ERRORLEVEL</p>
+<p>建立TEST4.BAT，内容如下：<br>@ECHO OFF<br>XCOPY C:\AUTOEXEC.BAT D:IF ERRORLEVEL 1 ECHO 文件拷贝失败<br>IF ERRORLEVEL 0 ECHO 成功拷贝文件</p>
+<p>然后执行文件:<br>C:&gt;TEST4</p>
+<p>如果文件拷贝成功，屏幕就会显示“成功拷贝文件”，否则就会显示“文件拷贝失败”。</p>
+<p>IF ERRORLEVEL 是用来测试它的上一个DOS命令的返回值的，注意只是上一个命令的返回值，而且返回值必须依照从大到小次序顺序判断。<br>因此下面的批处理文件是错误的：<br>@ECHO OFF<br>XCOPY C:\AUTOEXEC.BAT D:<br>IF ERRORLEVEL 0 ECHO 成功拷贝文件<br>IF ERRORLEVEL 1 ECHO 未找到拷贝文件<br>IF ERRORLEVEL 2 ECHO 用户通过ctrl-c中止拷贝操作<br>IF ERRORLEVEL 3 ECHO 预置错误阻止文件拷贝操作<br>IF ERRORLEVEL 4 ECHO 拷贝过程中写盘错误</p>
+<p>无论拷贝是否成功，后面的：</p>
+<p>未找到拷贝文件<br>用户通过ctrl-c中止拷贝操作<br>预置错误阻止文件拷贝操作<br>拷贝过程中写盘错误</p>
+<p>都将显示出来。</p>
+<p>以下就是几个常用命令的返回值及其代表的意义：<br>backup<br>0 备份成功<br>1 未找到备份文件<br>2 文件共享冲突阻止备份完成<br>3 用户用ctrl-c中止备份<br>4 由于致命的错误使备份操作中止</p>
+<p>diskcomp<br>0 盘比较相同<br>1 盘比较不同<br>2 用户通过ctrl-c中止比较操作<br>3 由于致命的错误使比较操作中止<br>4 预置错误中止比较</p>
+<p>diskcopy<br>0 盘拷贝操作成功<br>1 非致命盘读/写错<br>2 用户通过ctrl-c结束拷贝操作<br>3 因致命的处理错误使盘拷贝中止<br>4 预置错误阻止拷贝操作</p>
+<p>format<br>0 格式化成功<br>3 用户通过ctrl-c中止格式化处理<br>4 因致命的处理错误使格式化中止<br>5 在提示“proceed with format（y/n）?”下用户键入n结束</p>
+<p>xcopy<br>0 成功拷贝文件<br>1 未找到拷贝文件<br>2 用户通过ctrl-c中止拷贝操作<br>4 预置错误阻止文件拷贝操作<br>5 拷贝过程中写盘错误</p>
+<p>3、IF STRING1 == STRING2</p>
+<p>建立TEST5.BAT，文件内容如下：<br>@echo off<br>IF “%1” == “A” formAT A:</p>
+<p>执行：<br>C:&gt;TEST5 A<br>屏幕上就出现是否将A:盘格式化的内容。</p>
+<p>注意：为了防止参数为空的情况，一般会将字符串用双引号（或者其它符号，注意不能使用保留符号）括起来。<br>如：if [%1]==[A] 或者 if %1*==A*</p>
+<p>5、GOTO</p>
+<p>建立TEST6.BAT，文件内容如下：<br>@ECHO OFF<br>IF EXIST C:\AUTOEXEC.BAT GOTO _COPY<br>GOTO _DONE<br>:_COPY<br>COPY C:\AUTOEXEC.BAT D:<br>:_DONE</p>
+<p>注意：<br>(1) 标号前是ASCII字符的冒号”:”，冒号与标号之间不能有空格。<br>(2) 标号的命名规则与文件名的命名规则相同。<br>(3) DOS支持最长八位字符的标号，当无法区别两个标号时，将跳转至最近的一个标号。</p>
+<p>6、FOR</p>
+<p>建立C:\TEST7.BAT，文件内容如下：<br>@ECHO OFF<br>FOR %C IN (*.BAT *.TXT *.SYS) DO TYPE %C</p>
+<p>运行：<br>C:&gt;TEST7</p>
+<p>执行以后，屏幕上会将C:盘根目录下所有以BAT、TXT、SYS为扩展名的文件内容显示出来（不包括隐藏文件）。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bat%E9%AB%98%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Bat高级</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/04/15/Bat%E9%AB%98%E7%BA%A7/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

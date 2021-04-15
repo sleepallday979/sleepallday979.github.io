@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="实现树莓派的串口通信 材料 树莓派4 win 10 minicom串口助手测试    1.打通树莓派的串口通讯1.外设IO口定义说明从树莓派的相关资料我们可以看到，树莓派有两个串口可以使用，一个是硬件串口（&#x2F;dev&#x2F;ttyAMA0）,另一个是mini串口（&#x2F;dev&#x2F;ttyS0）。硬件串口有单独的波特率时钟源，性能好，稳定性强；mini串口功能简单，稳定性较差，波特率由CPU内核时钟提供，受内核时钟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="实现树莓派的串口通信 材料 树莓派4 win 10 minicom串口助手测试    1.打通树莓派的串口通讯1.外设IO口定义说明从树莓派的相关资料我们可以看到，树莓派有两个串口可以使用，一个是硬件串口（&#x2F;dev&#x2F;ttyAMA0）,另一个是mini串口（&#x2F;dev&#x2F;ttyS0）。硬件串口有单独的波特率时钟源，性能好，稳定性强；mini串口功能简单，稳定性较差，波特率由CPU内核时钟提供，受内核时钟">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150449021.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150508625.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150805190.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151014333.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151120464.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151211605.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151238559.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151312912.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813152200492.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813152721103.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813153639268.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161016652.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161353732.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161509554.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161716331.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161817487.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161855846.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161910441.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162051762.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162118812.png#shadow">
+<meta property="og:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162310160.png#shadow">
+<meta property="article:published_time" content="2021-04-15T05:00:21.606Z">
+<meta property="article:modified_time" content="2021-04-08T07:11:36.145Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150449021.png#shadow">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/04/15/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BB%BA%E7%AB%8BMySQL%E6%9C%8D%E5%8A%A1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2021/04/15/%E5%88%A9%E7%94%A8hexo+github+coding%20%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1"><span class="toc-number">1.</span> <span class="toc-text">实现树莓派的串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E9%80%9A%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E8%AE%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.打通树莓派的串口通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%A4%96%E8%AE%BEIO%E5%8F%A3%E5%AE%9A%E4%B9%89%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.外设IO口定义说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E4%B8%B2%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改串口映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E7%A1%AC%E4%BB%B6%E4%B8%B2%E5%8F%A3%E4%B8%BAGPIO%E4%B8%B2%E5%8F%A3"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.设置硬件串口为GPIO串口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E7%A6%81%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.禁用控制台功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%9F%A5%E7%9C%8B%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="toc-number">1.1.5.</span> <span class="toc-text">5.查看波特率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%BF%AE%E6%94%B9%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="toc-number">1.1.6.</span> <span class="toc-text">6.修改波特率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8minicom%E4%B8%B2%E5%8F%A3%E5%8A%A9%E6%89%8B%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">2.利用minicom串口助手测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEminicom"><span class="toc-number">1.2.1.</span> <span class="toc-text">在树莓派上安装配置minicom</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8pc%E7%AB%AF%E4%B8%8B%E8%BD%BDSSCOM%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">在pc端下载SSCOM串口调试助手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%80%EF%BC%9A"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">测试一：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BA%8C%EF%BC%9A"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">测试二：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%80%E5%90%8E"><span class="toc-number">1.3.</span> <span class="toc-text">3.最后</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">John Doe</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-15T05:00:21.606Z" itemprop="datePublished">2021-04-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="实现树莓派的串口通信"><a href="#实现树莓派的串口通信" class="headerlink" title="实现树莓派的串口通信"></a>实现树莓派的串口通信</h2><ul>
+<li>材料<ol>
+<li>树莓派4</li>
+<li>win 10</li>
+<li>minicom串口助手测试</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-打通树莓派的串口通讯"><a href="#1-打通树莓派的串口通讯" class="headerlink" title="1.打通树莓派的串口通讯"></a>1.打通树莓派的串口通讯</h3><h4 id="1-外设IO口定义说明"><a href="#1-外设IO口定义说明" class="headerlink" title="1.外设IO口定义说明"></a>1.外设IO口定义说明</h4><p>从树莓派的相关资料我们可以看到，树莓派有两个串口可以使用，一个是硬件串口（/dev/ttyAMA0）,另一个是mini串口（/dev/ttyS0）。硬件串口有单独的波特率时钟源，性能好，稳定性强；mini串口功能简单，稳定性较差，波特率由CPU内核时钟提供，受内核时钟影响。</p>
+<p>树莓派（3/4代）板载蓝牙模块，默认的硬件串口是分配给蓝牙模块使用的，而性能较差的mini串口是分配给GPIO串口 TXD0、RXD0。</p>
+<p><strong>在开始前说明以下几点：</strong></p>
+<ol>
+<li>树莓派UART端口的位置：TXD位于HEAD-8；RXD位于HEAD-10；GND位于HEAD-6（可选其他GND，14也可）。</li>
+<li>树莓派的TXD应接USB转串口设备的RXD，当然如果测试失败请交换RXD和TXD的顺序。</li>
+</ol>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150449021.png#shadow" alt="image-20200813150449021"></p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150508625.png#shadow" alt="image-20200813150508625"></p>
+<h4 id="2-修改串口映射"><a href="#2-修改串口映射" class="headerlink" title="2.修改串口映射"></a>2.修改串口映射</h4><ul>
+<li>serial配置</li>
+</ul>
+<p>输入命令<code>$ ls /dev -al</code>查看默认的串口分配方式，如下图所示</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813150805190.png#shadow" alt="image-20200813150805190"></p>
+<p>由于硬件串口分配给板载蓝牙使用，所以要释放掉，并设置硬件串口分配给GPIO串口</p>
+<p>首先登陆终端后，输入<code>sudo raspi-config</code>命令进入树莓派的系统配置界面，选择第五个选项</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151014333.png#shadow" alt="image-20200813151014333"></p>
+<p>接着进入p6 Serial，如下图所示</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151120464.png#shadow" alt="image-20200813151120464"></p>
+<p>选择关闭串口登陆功能，打开硬件串口调试功能</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151211605.png#shadow" alt="image-20200813151211605"></p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151238559.png#shadow" alt="image-20200813151238559"></p>
+<p>完成后出现下图的提示界面，即为OK</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813151312912.png#shadow" alt="image-20200813151312912"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">serial0                  GPIO</span><br><span class="line">serial1                  蓝牙模块</span><br></pre></td></tr></table></figure>
+<h4 id="3-设置硬件串口为GPIO串口"><a href="#3-设置硬件串口为GPIO串口" class="headerlink" title="3.设置硬件串口为GPIO串口"></a>3.设置硬件串口为GPIO串口</h4><p>接着将串口配置为GPIO串口</p>
+<p>输入<code>$ sudo vim /boot/config.txt</code>命令</p>
+<p>进入vim编辑</p>
+<p>将</p>
+<p><code>dtoverlay=pi3-miniuart-bt</code></p>
+<p>和</p>
+<p><code>force_turbo=1</code></p>
+<p>写入到最后，如下图</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813152200492.png#shadow" alt="image-20200813152200492"></p>
+<p>保存后退出vim</p>
+<p><strong>重启树莓派</strong>，输入<code>ls /dev -al</code>,可以发现此时两个串口已经互相换了位置，如下图</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813152721103.png#shadow" alt="image-20200813152721103"></p>
+<h4 id="4-禁用控制台功能"><a href="#4-禁用控制台功能" class="headerlink" title="4.禁用控制台功能"></a>4.禁用控制台功能</h4><p><code>$ sudo systemctl stop serial-getty@ttyAMA0.service</code></p>
+<p><code>$ sudo systemctl disable serial-getty@ttyAMA0.service</code></p>
+<h4 id="5-查看波特率"><a href="#5-查看波特率" class="headerlink" title="5.查看波特率"></a>5.查看波特率</h4><p><code>$ sudo stty -F /dev/ttyAMA0</code></p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813153639268.png#shadow" alt="image-20200813153639268"></p>
+<p>波特率需要是9600，假如不是9600就要修改</p>
+<h4 id="6-修改波特率"><a href="#6-修改波特率" class="headerlink" title="6.修改波特率"></a>6.修改波特率</h4><p><code>$ sudo vim /boot/cmdline.txt</code></p>
+<p>删除<code>console=serial0,115200</code>字段</p>
+<p>重启树莓派，再次查看波特率</p>
+<p><strong>上面所有配置完成之后，可以使用树莓派与其他硬件进行串口通信了。</strong></p>
+<h3 id="2-利用minicom串口助手测试"><a href="#2-利用minicom串口助手测试" class="headerlink" title="2.利用minicom串口助手测试"></a>2.利用minicom串口助手测试</h3><h4 id="在树莓派上安装配置minicom"><a href="#在树莓派上安装配置minicom" class="headerlink" title="在树莓派上安装配置minicom"></a>在树莓派上安装配置minicom</h4><ul>
+<li>安装minicom</li>
+</ul>
+<p>输入<code>sudo apt-get install minicom</code>安装</p>
+<ul>
+<li>配置minicom</li>
+</ul>
+<p>输入<code>sudo minicom -s</code>选择第三个<code>Serial port setup</code></p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161016652.png#shadow" alt="image-20200813161016652"></p>
+<p>进入配置界面之后</p>
+<p>将输入<code>A</code>  将<code>Serial Device</code>中的端口修改成<code>/dev/ttyAMA0</code></p>
+<p>同样输入<code>E</code> 按照提示选择9600</p>
+<p>配置完如下图所示：</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161353732.png#shadow" alt="image-20200813161353732"></p>
+<p>敲下回车确认，并选择<code>Save setup as dfl</code>将配置改为minicom的默认配置</p>
+<p>出现下图则为配置成功：</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161509554.png#shadow" alt="image-20200813161509554"></p>
+<p>最后选择<code>Exit from minicom</code>退出minicom</p>
+<h4 id="在pc端下载SSCOM串口调试助手"><a href="#在pc端下载SSCOM串口调试助手" class="headerlink" title="在pc端下载SSCOM串口调试助手"></a>在pc端下载SSCOM串口调试助手</h4><p>将树莓派的IO口通过USB转TTL模块接到PC端上，打开串口调试助手</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161716331.png#shadow" alt="image-20200813161716331"></p>
+<p>选择端口，我这是<code>COM5</code>，然后将波特率调整为9600</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161817487.png#shadow" alt="image-20200813161817487"></p>
+<p>最后选中端口，打开串口</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161855846.png#shadow" alt="image-20200813161855846"></p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813161910441.png#shadow" alt="image-20200813161910441"></p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><h5 id="测试一："><a href="#测试一：" class="headerlink" title="测试一："></a>测试一：</h5><p>在PC端输入值并点击发送，</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162051762.png#shadow" alt="image-20200813162051762"></p>
+<p>可以看到在树莓派上接收到了相应的字符串</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162118812.png#shadow" alt="image-20200813162118812"></p>
+<h5 id="测试二："><a href="#测试二：" class="headerlink" title="测试二："></a>测试二：</h5><p>在树莓派界面随意敲下字符，</p>
+<p>可以从PC端的串口调试工具中看到每个输入的字符，以单个字符的形式接收。</p>
+<p><img src="https://gitee.com/sleepeveryday/imagebd/raw/master/img/image-20200813162310160.png#shadow" alt="image-20200813162310160"></p>
+<h3 id="3-最后"><a href="#3-最后" class="headerlink" title="3.最后"></a>3.最后</h3><p>到这里已经实现了树莓派的串口通讯，但是这种方法仅是测试用，要实现硬件通讯抛开PC端和PC外设的控制处理，这就要等之后利用python去实现，这方面的等之后再讲。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1"><span class="toc-number">1.</span> <span class="toc-text">实现树莓派的串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E9%80%9A%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E8%AE%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.打通树莓派的串口通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%A4%96%E8%AE%BEIO%E5%8F%A3%E5%AE%9A%E4%B9%89%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.外设IO口定义说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E4%B8%B2%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.修改串口映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E7%A1%AC%E4%BB%B6%E4%B8%B2%E5%8F%A3%E4%B8%BAGPIO%E4%B8%B2%E5%8F%A3"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.设置硬件串口为GPIO串口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E7%A6%81%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.禁用控制台功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%9F%A5%E7%9C%8B%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="toc-number">1.1.5.</span> <span class="toc-text">5.查看波特率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E4%BF%AE%E6%94%B9%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="toc-number">1.1.6.</span> <span class="toc-text">6.修改波特率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A9%E7%94%A8minicom%E4%B8%B2%E5%8F%A3%E5%8A%A9%E6%89%8B%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">2.利用minicom串口助手测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEminicom"><span class="toc-number">1.2.1.</span> <span class="toc-text">在树莓派上安装配置minicom</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8pc%E7%AB%AF%E4%B8%8B%E8%BD%BDSSCOM%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%E5%8A%A9%E6%89%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">在pc端下载SSCOM串口调试助手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%80%EF%BC%9A"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">测试一：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BA%8C%EF%BC%9A"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">测试二：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%80%E5%90%8E"><span class="toc-number">1.3.</span> <span class="toc-text">3.最后</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/04/15/%E5%AE%9E%E7%8E%B0%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
