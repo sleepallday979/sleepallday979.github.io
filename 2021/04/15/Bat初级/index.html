@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Bat初级批处理文件最常用的几个命令： echo表示显示此命令后的字符echo on  表示在此语句后所有运行的命令都显示命令行本身echo off 表示在此语句后所有运行的命令都不显示命令行本身@与echo off相像，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 call调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件">
+    <meta name="description" content="批处理文件最常用的几个命令： echo表示显示此命令后的字符echo on  表示在此语句后所有运行的命令都显示命令行本身echo off 表示在此语句后所有运行的命令都不显示命令行本身@与echo off相像，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 call调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件后将无法返">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tsd&#39;s blog">
+<meta property="og:title" content="bat初级">
 <meta property="og:url" content="http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/index.html">
 <meta property="og:site_name" content="tsd&#39;s blog">
-<meta property="og:description" content="Bat初级批处理文件最常用的几个命令： echo表示显示此命令后的字符echo on  表示在此语句后所有运行的命令都显示命令行本身echo off 表示在此语句后所有运行的命令都不显示命令行本身@与echo off相像，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 call调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件">
+<meta property="og:description" content="批处理文件最常用的几个命令： echo表示显示此命令后的字符echo on  表示在此语句后所有运行的命令都显示命令行本身echo off 表示在此语句后所有运行的命令都不显示命令行本身@与echo off相像，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 call调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件后将无法返">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-15T05:05:27.211Z">
-<meta property="article:modified_time" content="2021-04-08T07:13:08.655Z">
+<meta property="article:modified_time" content="2021-04-15T05:28:53.080Z">
 <meta property="article:author" content="tsd">
 <meta name="twitter:card" content="summary">
     
@@ -36,7 +36,7 @@
       
     
     <!-- title -->
-    <title>tsd&#39;s blog</title>
+    <title>bat初级</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -91,21 +91,21 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&text=bat初级"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&is_video=false&description=bat初级"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bat初级&body=Check out this article: http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&name=bat初级&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&t=bat初级"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bat%E5%88%9D%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Bat初级</span></a></li></ol>
+      
     </div>
   </span>
 </div>
@@ -117,7 +117,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        
+        bat初级
     </h1>
 
 
@@ -144,7 +144,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Bat初级"><a href="#Bat初级" class="headerlink" title="Bat初级"></a>Bat初级</h2><p>批处理文件最常用的几个命令：</p>
+    <p>批处理文件最常用的几个命令：</p>
 <p><code>echo</code>表示显示此命令后的字符<br><code>echo on</code>  表示在此语句后所有运行的命令都显示命令行本身<br><code>echo off</code> 表示在此语句后所有运行的命令都不显示命令行本身<br><code>@</code>与<code>echo off相像，但它是加在每个命令行的最前面，表示运行时不显示这一行的命令行（只能影响当前行）。 </code>call<code>调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件后将无法返回当前文件并执行当前文件的后续命令）。</code>pause<code> 运行此句会暂停批处理的执行并在屏幕上显示</code>Press any key to continue…<code>的提示，等待用户按任意键后继续 rem 表示此命令后的字符为注释，不执行。 </code>title BAT<code>的标题 </code>cls` 清除屏幕</p>
 <p>开始例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ECHO OFF</span><br><span class="line">TITLE BAT脚本例子1</span><br><span class="line">echo -----------枚举C盘目录下所有文件-----------</span><br><span class="line">echo&#x3D;</span><br><span class="line">echo&#x3D;</span><br><span class="line">dir c:\*.*</span><br><span class="line">rem 输出到文本文件</span><br><span class="line">dir c:\*.* &gt; example1.txt</span><br><span class="line">echo&#x3D;</span><br><span class="line">echo&#x3D;</span><br><span class="line">echo --------------------------------------------</span><br><span class="line">PAUSE</span><br></pre></td></tr></table></figure>
@@ -191,22 +191,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bat%E5%88%9D%E7%BA%A7"><span class="toc-number">1.</span> <span class="toc-text">Bat初级</span></a></li></ol>
+      
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&text=bat初级"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&is_video=false&description=bat初级"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bat初级&body=Check out this article: http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&title=bat初级"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&name=bat初级&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://sleepallday.top/2021/04/15/Bat%E5%88%9D%E7%BA%A7/&t=bat初级"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
